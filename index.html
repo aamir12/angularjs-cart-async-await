@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Cart JS</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div ng-app="myApp" ng-controller="cartCtrl">
+<!--    <pre >
+     
+     {{ products | json:2 }}
+   </pre> -->
+  
+
+   <h3>Products</h3>
+   <table class="table table-bordered">
+     <tr>
+       <th>Product</th>
+       <th>Qty</th>
+       <th>Action</th>
+     </tr>
+     <tr ng-repeat = "p in products">
+       <td>
+          {{ p.name }}
+       
+        
+           
+            <div ng-repeat="po in p.product_options" class="form-group">
+              
+              {{ po.name }}
+              <select  class="form-control"  ng-model="p.options[po.name]">
+                <option value="">Select {{ po.name }}</option>
+                <option value="{{ pov }}" ng-repeat="pov in po.product_option_value">
+                  {{ pov.name }}
+                </option>
+              </select>
+              
+              
+            </div>
+             
+           
+            
+        
+       </td>
+       <td>
+         <input type="number" class="form-control" ng-model="p.qty" >
+         </td>
+       <td>
+         <button ng-click="addToCart(p)" class="btn btn-primary"> Add to cart </button>
+       </td>
+     </tr>
+   </table>
+  
+  <h3>Cart</h3>
+  <pre>
+  {{ cart | json }}
+  </pre>
+
+  <button type="button" ng-click="fetchData()">Fetch Data</button>
+  
+</div>
+<!-- partial -->
+  <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
